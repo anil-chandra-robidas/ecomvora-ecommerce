@@ -31,7 +31,7 @@ export default function BestRated({ products }: { products: Product[] }) {
   }, [activeTab]);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-[120px]">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
@@ -99,7 +99,7 @@ export default function BestRated({ products }: { products: Product[] }) {
               className={cn(
                 "w-10 h-10 rounded-lg text-sm font-medium transition-all",
                 currentPage === page
-                  ? "gradient-brand text-black"
+                  ? "gradient-brand text-white"
                   : "bg-surface border border-white/5 text-gray-400 hover:text-white hover:border-white/10"
               )}
             >

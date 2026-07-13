@@ -180,7 +180,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-dark">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
+      <section className="pt-20 pb-0 bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Our <span className="text-brand">Blog</span>
@@ -192,7 +192,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-16">
+      <section className="py-[120px]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginated.map((post) => (
@@ -249,7 +249,7 @@ export default function BlogPage() {
                   className={cn(
                     "w-10 h-10 rounded-lg text-sm font-medium transition-all",
                     currentPage === page
-                      ? "gradient-brand text-black"
+                      ? "gradient-brand text-white"
                       : "bg-surface border border-white/5 text-gray-400 hover:text-white hover:border-white/10"
                   )}
                 >

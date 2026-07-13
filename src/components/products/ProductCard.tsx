@@ -61,9 +61,11 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="group bg-surface rounded-2xl border border-white/5 overflow-hidden hover:border-brand/20 hover:shadow-2xl hover:shadow-brand/10 transition-all duration-500">
+    <div className="group bg-surface rounded-2xl border border-white/5 overflow-hidden hover:border-brand/30 hover:shadow-2xl hover:shadow-brand/20 hover:-translate-y-2 transition-all duration-500">
       {/* Image Area */}
       <div className="relative aspect-square bg-gradient-to-br from-surface-light to-surface overflow-hidden" style={{ perspective: "1000px" }}>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-10 pointer-events-none" />
         {/* Product Image with flip */}
         <div className="absolute inset-0 transition-transform duration-700 ease-in-out group-hover:[transform:rotateY(180deg)]" style={{ transformStyle: "preserve-3d" }}>
           <Link href={`/products/${product.id}`} className="block absolute inset-0">

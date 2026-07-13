@@ -41,11 +41,11 @@ type NavItem =
 
 const navLinks: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/products", label: "Shop", hasDropdown: true },
   { href: "/about", label: "About Us" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
+  { href: "/products", label: "Shop", hasDropdown: true },
 ];
 
 function AnnouncementCountdown() {

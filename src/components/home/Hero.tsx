@@ -126,10 +126,10 @@ export default function Hero() {
 
               {/* Tablet & Desktop layout — side by side */}
               <div className={`hidden md:flex w-full h-full ${slide.bgColorTablet}`}>
-                {/* Left — Content */}
-                <div className="flex-1 flex items-center">
-                  <div className="w-full max-w-7xl mx-auto px-8 lg:px-12 xl:px-16">
-                    <div className="max-w-xl">
+                {/* Left — Content (full viewport width for header alignment) */}
+                <div className="absolute inset-0 flex items-center pointer-events-none">
+                  <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
+                    <div className="w-full">
                       <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6">
                         <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                         <span className="text-sm font-medium text-white">{slide.badge}</span>
@@ -141,7 +141,7 @@ export default function Hero() {
                           </span>
                         ))}
                       </h1>
-                      <p className="text-white/70 text-base lg:text-lg xl:text-xl max-w-md mb-10 leading-relaxed">
+                      <p className="text-white/70 text-base lg:text-lg xl:text-xl max-w-lg mb-10 leading-relaxed">
                         {slide.description}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -171,7 +171,7 @@ export default function Hero() {
                   </div>
                 </div>
                 {/* Right — Image */}
-                <div className="hidden lg:block relative w-[45%] xl:w-[40%]">
+                <div className="hidden lg:block relative w-[45%] xl:w-[40%] ml-auto shrink-0">
                   <Image
                     src={slide.image}
                     alt={slide.title.join(" ")}

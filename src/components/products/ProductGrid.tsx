@@ -53,7 +53,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
               className={cn(
                 "w-10 h-10 rounded-lg text-sm font-medium transition-all",
                 currentPage === page
-                  ? "gradient-brand text-black"
+                  ? "gradient-brand text-white"
                   : "bg-surface border border-white/5 text-gray-400 hover:text-white hover:border-white/10"
               )}
             >

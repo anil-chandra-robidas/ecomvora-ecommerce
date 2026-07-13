@@ -43,7 +43,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-[120px]">
         <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-surface border border-white/10 rounded-2xl p-8">

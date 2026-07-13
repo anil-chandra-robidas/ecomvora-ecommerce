@@ -79,7 +79,7 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-[120px]">
         <div className="max-w-3xl mx-auto px-4 space-y-3">
           {faqs.map((faq) => (
             <FaqItem key={faq.question} faq={faq} />
