@@ -1,24 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, SlidersHorizontal, DollarSign } from "lucide-react";
 import { CATEGORIES } from "@/types";
 import { cn, categoryEmojis } from "@/lib/utils";
 
 interface ProductFiltersProps {
   selectedCategory: string;
   searchQuery: string;
+  priceRange: [number, number];
   onCategoryChange: (category: string) => void;
   onSearchChange: (query: string) => void;
+  onPriceChange: (range: [number, number]) => void;
 }
 
 export default function ProductFilters({
   selectedCategory,
   searchQuery,
+  priceRange,
   onCategoryChange,
   onSearchChange,
+  onPriceChange,
 }: ProductFiltersProps) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [minPrice, setMinPrice] = useState(priceRange[0].toString());
+  const [maxPrice, setMaxPrice] = useState(priceRange[1].toString());
+
+  const handlePriceApply = () => {
+    const min = parseInt(minPrice) || 0;
+    const max = parseInt(maxPrice) || 9999;
+    onPriceChange([min, max]);
+  };
 
   return (
     <>
@@ -30,9 +42,9 @@ export default function ProductFilters({
         >
           <SlidersHorizontal className="w-4 h-4" />
           Filters
-          {selectedCategory && (
+          {(selectedCategory || priceRange[0] > 0 || priceRange[1] < 9999) && (
             <span className="ml-1 px-2 py-0.5 gradient-brand rounded-full text-xs text-black font-semibold">
-              1
+              {(selectedCategory ? 1 : 0) + (priceRange[0] > 0 || priceRange[1] < 9999 ? 1 : 0)}
             </span>
           )}
         </button>
@@ -94,30 +106,42 @@ export default function ProductFilters({
             </div>
           </div>
 
-          {/* Active filters */}
-          {(selectedCategory || searchQuery) && (
-            <div>
-              <h3 className="text-white font-semibold text-sm mb-3">Active Filters</h3>
-              <div className="flex flex-wrap gap-2">
-                {selectedCategory && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-brand/10 text-brand rounded-lg text-xs font-medium">
-                    {selectedCategory}
-                    <button onClick={() => onCategoryChange("")}>
-                      <X className="w-3 h-3" />
-                    </button>
-                  </span>
-                )}
-                {searchQuery && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-brand/10 text-brand rounded-lg text-xs font-medium">
-                    &quot;{searchQuery}&quot;
-                    <button onClick={() => onSearchChange("")}>
-                      <X className="w-3 h-3" />
-                    </button>
-                  </span>
-                )}
+          {/* Price Range */}
+          <div>
+            <h3 className="text-white font-semibold text-sm mb-3">Price Range</h3>
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <DollarSign className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
+                <input
+                  type="number"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  placeholder="Min"
+                  min="0"
+                  className="w-full pl-7 pr-2 py-2 bg-dark border border-white/10 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-brand/50"
+                />
+              </div>
+              <span className="text-gray-500 text-sm">—</span>
+              <div className="relative flex-1">
+                <DollarSign className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
+                <input
+                  type="number"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  placeholder="Max"
+                  min="0"
+                  className="w-full pl-7 pr-2 py-2 bg-dark border border-white/10 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-brand/50"
+                />
               </div>
             </div>
-          )}
+            <button
+              onClick={handlePriceApply}
+              className="w-full mt-3 px-4 py-2 bg-brand/10 text-brand rounded-lg text-sm font-medium hover:bg-brand/20 transition-colors"
+            >
+              Apply Price
+            </button>
+          </div>
+
         </div>
       </div>
     </>

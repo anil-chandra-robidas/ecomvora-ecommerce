@@ -68,22 +68,23 @@ function FaqItem({ faq }: { faq: (typeof faqs)[number] }) {
 export default function FaqPage() {
   return (
     <div className="min-h-screen bg-dark">
-      <section className="py-20 bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Frequently Asked <span className="text-brand">Questions</span>
-          </h1>
-          <p className="text-gray-400">
-            Everything you need to know about shopping with EcomVora.
-          </p>
-        </div>
-      </section>
+      <section className="py-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
+        <div className="max-w-3xl mx-auto px-4">
+          {/* Hero */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Frequently Asked <span className="text-brand">Questions</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Everything you need to know about shopping with EcomVora.
+            </p>
+          </div>
 
-      <section className="py-[120px]">
-        <div className="max-w-3xl mx-auto px-4 space-y-3">
+          <div className="space-y-3">
           {faqs.map((faq) => (
             <FaqItem key={faq.question} faq={faq} />
           ))}
+        </div>
         </div>
       </section>
     </div>

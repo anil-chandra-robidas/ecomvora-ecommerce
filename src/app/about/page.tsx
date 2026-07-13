@@ -32,24 +32,21 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-dark">
-      {/* Hero */}
-      <section className="relative pt-20 pb-0 bg-gradient-to-br from-emerald-900/40 via-dark to-dark overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent" />
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            About <span className="text-brand">EcomVora</span>
-          </h1>
-          <p className="text-lg text-gray-400 leading-relaxed">
-            We&apos;re on a mission to make fresh, quality groceries accessible to everyone.
-            Founded in 2024, EcomVora connects local farmers and producers directly with
-            your doorstep — no middlemen, no compromises.
-          </p>
-        </div>
-      </section>
-
       {/* Mission & Vision */}
-      <section className="py-[120px]">
+      <section className="py-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
         <div className="max-w-6xl mx-auto px-4">
+          {/* Hero */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              About <span className="text-brand">EcomVora</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              We&apos;re on a mission to make fresh, quality groceries accessible to everyone.
+              Founded in 2024, EcomVora connects local farmers and producers directly with
+              your doorstep — no middlemen, no compromises.
+            </p>
+          </div>
+
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}

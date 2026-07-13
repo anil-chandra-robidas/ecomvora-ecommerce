@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 6;
 
 const posts = [
   {
@@ -179,21 +179,19 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-dark">
-      {/* Hero */}
-      <section className="pt-20 pb-0 bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Our <span className="text-brand">Blog</span>
-          </h1>
-          <p className="text-gray-400 text-lg">
-            Tips, recipes, and stories from the world of fresh groceries.
-          </p>
-        </div>
-      </section>
-
       {/* Blog Grid */}
       <section className="py-[120px]">
         <div className="max-w-6xl mx-auto px-4">
+          {/* Hero */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Our <span className="text-brand">Blog</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Tips, recipes, and stories from the world of fresh groceries.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginated.map((post) => (
               <Link

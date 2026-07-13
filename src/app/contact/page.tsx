@@ -32,19 +32,19 @@ const contactInfo = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-dark">
-      <section className="py-20 bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Get in <span className="text-brand">Touch</span>
-          </h1>
-          <p className="text-gray-400">
-            Have a question or need help? We&apos;d love to hear from you.
-          </p>
-        </div>
-      </section>
+      <section className="py-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
+        <div className="max-w-6xl mx-auto px-4">
+          {/* Hero */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Get in <span className="text-brand">Touch</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Have a question or need help? We&apos;d love to hear from you.
+            </p>
+          </div>
 
-      <section className="py-[120px]">
-        <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-surface border border-white/10 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-white mb-6">Send us a Message</h2>
@@ -131,6 +131,7 @@ export default function ContactPage() {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </section>
     </div>
