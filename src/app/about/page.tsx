@@ -33,7 +33,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-dark">
       {/* Mission & Vision */}
-      <section className="py-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
+      <section className="pt-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
         <div className="max-w-6xl mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-16">
@@ -121,7 +121,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section className="pb-20">
+      <section className="py-[60px]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">Our Values</h2>
@@ -150,7 +150,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-[120px]">
+      <section className="py-[60px]">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold text-white mb-4">Our Story</h2>
@@ -189,7 +189,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-[120px] bg-surface/50">
+      <section className="py-[60px] bg-surface/50">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-white text-center mb-12">Why Choose Us</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

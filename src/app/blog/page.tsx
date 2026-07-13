@@ -180,7 +180,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-dark">
       {/* Blog Grid */}
-      <section className="py-[120px]">
+      <section className="pt-[120px]">
         <div className="max-w-6xl mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-16">
@@ -208,14 +208,16 @@ export default function BlogPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                   />
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">
-                    {post.category}
-                  </span>
                 </div>
 
                 {/* Content */}
                 <div className="p-5">
-                  <p className="text-xs text-gray-500 mb-2">{post.date}</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="inline-block px-2.5 py-0.5 bg-brand/10 text-brand rounded text-[11px] font-bold uppercase tracking-wider">
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-gray-500">{post.date}</span>
+                  </div>
                   <h2 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-brand transition-colors duration-200">
                     {post.title}
                   </h2>

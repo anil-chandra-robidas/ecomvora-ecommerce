@@ -68,7 +68,7 @@ function FaqItem({ faq }: { faq: (typeof faqs)[number] }) {
 export default function FaqPage() {
   return (
     <div className="min-h-screen bg-dark">
-      <section className="py-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
+      <section className="pt-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
         <div className="max-w-3xl mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-16">

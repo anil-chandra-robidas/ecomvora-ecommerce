@@ -32,7 +32,7 @@ const contactInfo = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-dark">
-      <section className="py-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
+      <section className="pt-[120px] bg-gradient-to-br from-emerald-900/40 via-dark to-dark">
         <div className="max-w-6xl mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-16">

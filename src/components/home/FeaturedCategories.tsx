@@ -13,7 +13,7 @@ const categoryDescriptions: Record<string, string> = {
 
 export default function FeaturedCategories() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-[120px]">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[120px] pb-[60px]">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-white mb-3">
           Shop by <span className="text-gradient-brand">Category</span>

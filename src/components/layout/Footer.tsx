@@ -50,7 +50,7 @@ const paymentMethods = ["Visa", "Mastercard", "PayPal", "Stripe"];
 
 export default function Footer() {
   return (
-    <footer className="bg-surface border-t border-white/5">
+    <footer className="mt-[120px] bg-surface border-t border-white/5">
       {/* Trust Bar */}
       <div className="border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
