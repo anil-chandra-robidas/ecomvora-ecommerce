@@ -1,0 +1,11 @@
+import path from "node:path";
+
+export default {
+  earlyAccess: true,
+  schema: path.join(__dirname, "schema.prisma"),
+  migrate: {
+    async url() {
+      return "file:./dev.db";
+    },
+  },
+};
