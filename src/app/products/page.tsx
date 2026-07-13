@@ -23,6 +23,9 @@ function ProductsContent() {
   const [currentPage, setCurrentPage] = useState(1);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 9999]);
   const [sortBy, setSortBy] = useState("newest");
+  const [minRating, setMinRating] = useState(0);
+  const [stockFilter, setStockFilter] = useState<"all" | "in-stock" | "out-of-stock">("all");
+  const [minDiscount, setMinDiscount] = useState(0);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -48,6 +51,19 @@ function ProductsContent() {
 
   const filteredProducts = products
     .filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1])
+    .filter((p) => {
+      if (stockFilter === "in-stock") return p.stock > 0;
+      if (stockFilter === "out-of-stock") return p.stock === 0;
+      return true;
+    })
+    .filter((p) => {
+      if (minDiscount > 0) {
+        const originalPrice = p.price * 1.3;
+        const discount = Math.round(((originalPrice - p.price) / originalPrice) * 100);
+        return discount >= minDiscount;
+      }
+      return true;
+    })
     .sort((a, b) => {
       switch (sortBy) {
         case "price-low":
@@ -91,9 +107,15 @@ function ProductsContent() {
           selectedCategory={category}
           searchQuery={searchQuery}
           priceRange={priceRange}
+          minRating={minRating}
+          stockFilter={stockFilter}
+          minDiscount={minDiscount}
           onCategoryChange={setCategory}
           onSearchChange={setSearchQuery}
           onPriceChange={setPriceRange}
+          onRatingChange={setMinRating}
+          onStockFilterChange={setStockFilter}
+          onDiscountToggle={setMinDiscount}
         />
 
         {/* Products grid */}

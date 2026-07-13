@@ -8,6 +8,8 @@ export interface Product {
   category: string;
   stock: number;
   featured: boolean;
+  onSale?: boolean;
+  avgRating?: number;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
