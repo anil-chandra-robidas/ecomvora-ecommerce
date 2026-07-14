@@ -1,0 +1,252 @@
+const posts = [
+  {
+    title: "How to Start a Healthy Diet Today",
+    slug: "how-to-start-healthy-diet-today",
+    excerpt: "Starting a healthy diet doesn't have to be overwhelming. Learn the simple first steps to transform your eating habits.",
+    content: "<p>Starting a healthy diet is one of the best decisions you can make for your well-being. Here's how to begin:</p><h3>Assess Your Current Habits</h3><p>Before making changes, understand what you currently eat. Keep a food journal for a week.</p><h3>Set Realistic Goals</h3><p>Don't aim for perfection. Start with one or two small changes and build from there.</p><h3>Stock Your Kitchen</h3><p>Remove processed foods and stock up on fruits, vegetables, lean proteins, and whole grains.</p><h3>Plan Your Meals</h3><p>Meal planning helps you make better choices and avoid impulsive eating.</p>",
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop",
+    category: "Nutrition",
+    author: "Dr. Lisa Wang",
+    readTime: "5 min read",
+    published: true,
+  },
+  {
+    title: "Fresh Salad Recipes for Every Season",
+    slug: "fresh-salad-recipes-every-season",
+    excerpt: "Discover delicious salad recipes that celebrate the best produce each season has to offer.",
+    content: "<p>Salads are versatile, nutritious, and delicious year-round. Here are seasonal recipes to try:</p><h3>Spring</h3><p>Asparagus, peas, and radishes with a lemon vinaigrette. Light and refreshing.</p><h3>Summer</h3><p>Caprese salad with heirloom tomatoes, fresh mozzarella, and basil.</p><h3>Fall</h3><p>Roasted squash, apple, and pecan salad with maple dressing.</p><h3>Winter</h3><p>Kale, pomegranate, and citrus salad with a honey-tahini dressing.</p>",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=500&fit=crop",
+    category: "Recipes",
+    author: "Emily Davis",
+    readTime: "4 min read",
+    published: true,
+  },
+  {
+    title: "The Science Behind Superfoods",
+    slug: "science-behind-superfoods",
+    excerpt: "What makes a food a 'superfood'? We dive into the science behind these nutrient-packed powerhouses.",
+    content: "<p>The term 'superfood' gets thrown around a lot, but what does it actually mean?</p><h3>Defining Superfoods</h3><p>Superfoods are nutrient-dense foods that provide significant health benefits beyond basic nutrition.</p><h3>Blueberries</h3><p>Rich in antioxidants, blueberries help fight oxidative stress and support brain health.</p><h3>Salmon</h3><p>High in omega-3 fatty acids, salmon supports heart and brain health.</p><h3>Kale</h3><p>Packed with vitamins A, C, and K, plus fiber and antioxidants.</p>",
+    image: "https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=800&h=500&fit=crop",
+    category: "Education",
+    author: "Dr. Lisa Wang",
+    readTime: "6 min read",
+    published: true,
+  },
+  {
+    title: "Quick Weeknight Dinner Ideas",
+    slug: "quick-weeknight-dinner-ideas",
+    excerpt: "Busy weeknights call for easy, delicious meals. These recipes are ready in 30 minutes or less.",
+    content: "<p>When time is short, these quick dinners save the day:</p><h3>One-Pan Lemon Chicken</h3><p>Chicken thighs with potatoes and green beans. Everything cooks together for easy cleanup.</p><h3>Stir-Fry Noodles</h3><p>Your choice of protein with vegetables and noodles in a savory sauce.</p><h3>Taco Bowls</h3><p>Seasoned ground beef or beans with rice, salsa, cheese, and avocado.</p><h3>Pasta Aglio e Olio</h3><p>Simple garlic and olive oil pasta with red pepper flakes. Ready in 15 minutes.</p>",
+    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=500&fit=crop",
+    category: "Recipes",
+    author: "Sarah Johnson",
+    readTime: "3 min read",
+    published: true,
+  },
+  {
+    title: "Eating for Energy: Foods That Fight Fatigue",
+    slug: "eating-for-energy-foods-fight-fatigue",
+    excerpt: "Feeling tired all the time? Your diet might be the culprit. Here are foods that boost energy naturally.",
+    content: "<p>What you eat directly impacts your energy levels. Here's how to eat for lasting energy:</p><h3>Complex Carbohydrates</h3><p>Oats, quinoa, and sweet potatoes provide steady energy without blood sugar spikes.</p><h3>Iron-Rich Foods</h3><p>Spinach, lentils, and red meat help prevent iron deficiency, a common cause of fatigue.</p><h3>B-Vitamins</h3><p>Found in eggs, leafy greens, and fish, B vitamins help convert food into energy.</p><h3>Hydration</h3><p>Even mild dehydration causes fatigue. Drink water consistently throughout the day.</p>",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=500&fit=crop",
+    category: "Nutrition",
+    author: "Mike Chen",
+    readTime: "5 min read",
+    published: true,
+  },
+  {
+    title: "How to Store Fresh Produce Properly",
+    slug: "how-to-store-fresh-produce",
+    excerpt: "Stop throwing away spoiled food. Learn the right way to store fruits and vegetables to keep them fresh longer.",
+    content: "<p>Proper storage can extend the life of your produce significantly:</p><h3>Tomatoes</h3><p>Store at room temperature, stem side down. Never refrigerate — it kills the flavor.</p><h3>Leafy Greens</h3><p>Wash, dry thoroughly, and store in a container lined with paper towels.</p><h3>Berries</h3><p>Don't wash until ready to eat. Store in a single layer on paper towels.</p><h3>Herbs</h3><p>Treat like flowers — place stems in water and cover with a plastic bag in the fridge.</p>",
+    image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800&h=500&fit=crop",
+    category: "Tips",
+    author: "Emily Davis",
+    readTime: "4 min read",
+    published: true,
+  },
+  {
+    title: "The Benefits of Eating Local",
+    slug: "benefits-of-eating-local",
+    excerpt: "Why choosing local produce is better for your health, your community, and the planet.",
+    content: "<p>Local food isn't just fresher — it's better in many ways:</p><h3>Peak Freshness</h3><p>Local produce is picked at peak ripeness, so it tastes better and has more nutrients.</p><h3>Supports Your Community</h3><p>Buying local keeps money in your community and supports local farmers.</p><h3>Lower Environmental Impact</h3><p>Less transportation means a smaller carbon footprint.</p><h3>Seasonal Variety</h3><p>Eating local encourages you to try seasonal produce you might not normally choose.</p>",
+    image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=500&fit=crop",
+    category: "Lifestyle",
+    author: "Sarah Johnson",
+    readTime: "4 min read",
+    published: true,
+  },
+  {
+    title: "Healthy Snacking: Beyond the Chips",
+    slug: "healthy-snacking-beyond-chips",
+    excerpt: "Craving a snack? These healthy alternatives are satisfying, nutritious, and delicious.",
+    content: "<p>Snacking doesn't have to derail your diet. Try these healthy options:</p><h3>Nut Butter and Apple Slices</h3><p>A perfect combination of protein, healthy fats, and fiber.</p><h3>Greek Yogurt Parfait</h3><p>Layer yogurt with berries and granola for a protein-packed treat.</p><h3>Hummus and Veggies</h3><p>Carrots, cucumber, and bell peppers with hummus make a satisfying crunch.</p><h3>Dark Chocolate</h3><p>A small square of 70%+ dark chocolate satisfies sweet cravings with antioxidants.</p>",
+    image: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&h=500&fit=crop",
+    category: "Tips",
+    author: "Mike Chen",
+    readTime: "3 min read",
+    published: true,
+  },
+  {
+    title: "Understanding Food Labels: A Complete Guide",
+    slug: "understanding-food-labels-guide",
+    excerpt: "Learn how to read nutrition labels like a pro and make smarter choices at the grocery store.",
+    content: "<p>Food labels can be confusing, but they hold valuable information:</p><h3>Serving Size</h3><p>Always check the serving size first — everything else on the label is based on it.</p><h3>Calories</h3><p>Know how many calories you're getting per serving to manage your intake.</p><h3>Ingredients List</h3><p>Ingredients are listed by weight. If sugar or oil is near the top, be cautious.</p><h3>Daily Values</h3><p>The %DV helps you understand if a food is high or low in a particular nutrient.</p>",
+    image: "https://images.unsplash.com/photo-1505576399279-0a06e402ecde?w=800&h=500&fit=crop",
+    category: "Education",
+    author: "Dr. Lisa Wang",
+    readTime: "7 min read",
+    published: true,
+  },
+  {
+    title: "Breakfast Ideas to Power Your Morning",
+    slug: "breakfast-ideas-power-morning",
+    excerpt: "Start your day right with these nutritious, delicious breakfast ideas that keep you fueled until lunch.",
+    content: "<p>A good breakfast sets the tone for your entire day:</p><h3>Overnight Oats</h3><p>Prepare the night before with oats, milk, chia seeds, and your favorite toppings.</p><h3>Veggie Omelette</h3><p>Load up on spinach, tomatoes, and mushrooms for a protein-rich start.</h3></p><h3>Smoothie Bowl</h3><p>Blend frozen fruit with yogurt and top with granola and fresh berries.</p><h3>Avocado Toast</h3><p>Whole grain toast with mashed avocado, a squeeze of lemon, and everything bagel seasoning.</p>",
+    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&h=500&fit=crop",
+    category: "Recipes",
+    author: "Sarah Johnson",
+    readTime: "4 min read",
+    published: true,
+  },
+  {
+    title: "How to Make Homemade Granola",
+    slug: "how-to-make-homemade-granola",
+    excerpt: "Skip the store-bought stuff. Homemade granola is healthier, cheaper, and endlessly customizable.",
+    content: "<p>Homemade granola is surprisingly easy to make:</p><h3>Base Ingredients</h3><p>Start with rolled oats, a sweetener (honey or maple syrup), and a fat (coconut oil).</p><h3>Add Your Favorites</h3><p>Mix in nuts, seeds, dried fruit, or chocolate chips.</p><h3>Bake Low and Slow</h3><p>Bake at 300°F, stirring every 10 minutes, until golden brown.</p><h3>Store Properly</h3><p>Let it cool completely before storing in an airtight container. Lasts 2-3 weeks.</p>",
+    image: "https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?w=800&h=500&fit=crop",
+    category: "Recipes",
+    author: "Emily Davis",
+    readTime: "5 min read",
+    published: true,
+  },
+  {
+    title: "Plant-Based Proteins You Should Know About",
+    slug: "plant-based-proteins-you-should-know",
+    excerpt: "You don't need meat to get enough protein. Discover the best plant-based protein sources.",
+    content: "<p>Plant-based proteins are nutritious, sustainable, and versatile:</p><h3>Lentils</h3><p>18g of protein per cup. Perfect in soups, salads, and curries.</p><h3>Chickpeas</h3><p>15g per cup. Make hummus, roast them, or add to salads.</p><h3>Tofu</h3><p>A complete protein with 20g per cup. Absorbs any flavor you add.</p><h3>Quinoa</h3><p>8g per cup and a complete protein. Use as a base for bowls and salads.</p><h3>Tempeh</h3><p>Fermented soy with 31g per cup. Great in stir-fries and sandwiches.</p>",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=500&fit=crop",
+    category: "Nutrition",
+    author: "Mike Chen",
+    readTime: "5 min read",
+    published: true,
+  },
+  {
+    title: "Simple Homemade Soup Recipes",
+    slug: "simple-homemade-soup-recipes",
+    excerpt: "Warm up with these comforting, easy-to-make soup recipes that are perfect for any day of the week.",
+    content: "<p>Nothing beats a bowl of homemade soup:</p><h3>Chicken Noodle</h3><p>Classic comfort food with tender chicken, vegetables, and egg noodles.</p><h3>Tomato Basil</h3><p>Creamy tomato soup with fresh basil. Pair with a grilled cheese sandwich.</p><h3>Minestrone</h3><p>Hearty vegetable soup with beans and pasta. Use whatever vegetables you have on hand.</p><h3>Butternut Squash</h3><p>Silky smooth with a hint of nutmeg. Perfect for fall evenings.</p>",
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&h=500&fit=crop",
+    category: "Recipes",
+    author: "Sarah Johnson",
+    readTime: "4 min read",
+    published: true,
+  },
+  {
+    title: "Mindful Eating: Transform Your Relationship with Food",
+    slug: "mindful-eating-transform-relationship-food",
+    excerpt: "Stop eating on autopilot. Mindful eating helps you enjoy food more and eat less without dieting.",
+    content: "<p>Mindful eating changes how you relate to food:</p><h3>Eat Without Distractions</h3><p>Put away your phone and turn off the TV. Focus on your meal.</p><h3>Chew Slowly</h3><p>Take time to chew each bite thoroughly. It takes 20 minutes for your brain to register fullness.</p><h3>Notice Flavors and Textures</h3><p>Pay attention to taste, smell, and texture. You'll enjoy food more with less.</p><h3>Listen to Your Body</h3><p>Eat when hungry, stop when satisfied. Not when bored or stressed.</p>",
+    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&h=500&fit=crop",
+    category: "Lifestyle",
+    author: "Dr. Lisa Wang",
+    readTime: "5 min read",
+    published: true,
+  },
+  {
+    title: "Growing Herbs at Home: A Beginner's Guide",
+    slug: "growing-herbs-at-home-beginners-guide",
+    excerpt: "Fresh herbs elevate any dish. Learn how to grow your own herbs indoors, even in a small apartment.",
+    content: "<p>Growing herbs at home is easy and rewarding:</p><h3>Start with Easy Herbs</h3><p>Basil, mint, parsley, and chives are perfect for beginners.</p><h3>Choose the Right Containers</h3><p>Use pots with drainage holes. Herbs don't like wet roots.</p><h3>Light Requirements</h3><p>Most herbs need 6+ hours of sunlight. A south-facing window works best.</p><h3>Harvest Regularly</h3><p>Cutting herbs frequently encourages bushier growth. Don't let them flower.</p>",
+    image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&h=500&fit=crop",
+    category: "Tips",
+    author: "Emily Davis",
+    readTime: "4 min read",
+    published: true,
+  },
+  {
+    title: "The Truth About Sugar Alternatives",
+    slug: "truth-about-sugar-alternatives",
+    excerpt: "Stevia, monk fruit, erythritol — are sugar alternatives actually healthier? We break down the facts.",
+    content: "<p>Sugar alternatives are popular, but what do we really know about them?</p><h3>Stevia</h3><p>Plant-based, zero calories. Some people notice a bitter aftertaste.</p><h3>Monk Fruit</h3><p>Naturally sweet, zero calories. Often blended with other sweeteners.</p><h3>Erythritol</h3><p>A sugar alcohol with almost no calories. May cause digestive issues in large amounts.</p><h3>The Bottom Line</h3><p>These can help reduce sugar intake, but they're not permission to overconsume sweets.</p>",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop",
+    category: "Education",
+    author: "Dr. Lisa Wang",
+    readTime: "6 min read",
+    published: true,
+  },
+  {
+    title: "Meal Prep Sunday: A Step-by-Step Guide",
+    slug: "meal-prep-sunday-step-by-step",
+    excerpt: "Spend a few hours on Sunday and eat well all week. Our complete meal prep guide makes it easy.",
+    content: "<p>Meal prepping on Sunday saves time and stress all week:</p><h3>Step 1: Plan Your Menu</h3><p>Choose 3-4 meals and 2-3 snacks for the week. Keep it simple.</p><h3>Step 2: Make Your List</h3><p>Write down all ingredients you need. Check what you already have.</p><h3>Step 3: Batch Cook</h3><p>Cook proteins, grains, and roasted vegetables in large quantities.</p><h3>Step 4: Portion and Store</h3><p>Divide into containers. Label with the day and meal name.</p><h3>Step 5: Prep Snacks</h3><p>Wash and cut fruits and vegetables. Portion nuts and yogurt cups.</p>",
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&h=500&fit=crop",
+    category: "Lifestyle",
+    author: "Mike Chen",
+    readTime: "6 min read",
+    published: true,
+  },
+  {
+    title: "Homemade Pizza Dough Recipe",
+    slug: "homemade-pizza-dough-recipe",
+    excerpt: "Make restaurant-quality pizza at home with this simple, foolproof dough recipe.",
+    content: "<p>Homemade pizza dough is a game-changer:</p><h3>Ingredients</h3><p>2 1/4 tsp yeast, 1 cup warm water, 3 cups flour, 2 tbsp olive oil, 1 tsp salt, 1 tsp sugar.</p><h3>Mix and Knead</h3><p>Dissolve yeast in warm water. Add remaining ingredients and knead for 8-10 minutes.</p><h3>Let It Rise</h3><p>Cover and let rise in a warm place for 1-2 hours until doubled in size.</p><h3>Shape and Bake</h3><p>Roll out, add toppings, and bake at 475°F for 12-15 minutes until golden.</p>",
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=500&fit=crop",
+    category: "Recipes",
+    author: "Sarah Johnson",
+    readTime: "5 min read",
+    published: true,
+  },
+  {
+    title: "Why Fiber Matters More Than You Think",
+    slug: "why-fiber-matters-more-than-you-think",
+    excerpt: "Most people don't get enough fiber. Here's why it's essential for your health and how to get more.",
+    content: "<p>Fiber is one of the most overlooked nutrients:</p><h3>Digestive Health</h3><p>Fiber keeps your digestive system running smoothly and prevents constipation.</p><h3>Heart Health</h3><p>Soluble fiber helps lower cholesterol levels, reducing heart disease risk.</p><h3>Blood Sugar Control</h3><p>Fiber slows sugar absorption, helping prevent blood sugar spikes.</p><h3>How Much Do You Need?</h3><p>Adults need 25-35 grams daily. Most people only get about 15 grams.</p>",
+    image: "https://images.unsplash.com/photo-1506617420156-8e4536971650?w=800&h=500&fit=crop",
+    category: "Nutrition",
+    author: "Dr. Lisa Wang",
+    readTime: "5 min read",
+    published: false,
+  },
+  {
+    title: "Cooking with Kids: Fun Kitchen Projects",
+    slug: "cooking-with-kids-fun-kitchen-projects",
+    excerpt: "Get your kids excited about food with these fun, educational cooking projects the whole family can enjoy.",
+    content: "<p>Cooking with kids creates lasting memories and teaches valuable skills:</p><h3>Pizza Making</h3><p>Let kids shape their own mini pizzas and choose their toppings.</p><h3>Fruit Kabobs</h3><p>Thread colorful fruits onto skewers. Great for practicing fine motor skills.</p><h3>No-Bake Energy Balls</h3><p>Mix oats, nut butter, and honey. Roll into balls. No oven needed.</p><h3>Cookie Decorating</h3><p>Bake sugar cookies and let kids go wild with frosting and sprinkles.</p>",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+    category: "Lifestyle",
+    author: "Emily Davis",
+    readTime: "4 min read",
+    published: false,
+  },
+];
+
+async function createPost(post) {
+  const res = await fetch("http://localhost:3000/api/admin/blog", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(post),
+  });
+  if (!res.ok) {
+    console.error(`Failed to create: ${post.title} - ${res.status}`);
+    return false;
+  }
+  return true;
+}
+
+async function main() {
+  let success = 0;
+  let failed = 0;
+  for (const post of posts) {
+    const ok = await createPost(post);
+    if (ok) {
+      success++;
+      console.log(`Created: ${post.title}`);
+    } else {
+      failed++;
+    }
+  }
+  console.log(`\nDone: ${success} created, ${failed} failed`);
+}
+
+main();

@@ -14,7 +14,7 @@ export default function NewProductPage() {
     slug: "",
     description: "",
     price: "",
-    image: "🍎",
+    image: "",
     category: "fruits",
     stock: "",
     featured: false,
@@ -54,8 +54,6 @@ export default function NewProductPage() {
       setLoading(false);
     }
   }
-
-  const emojiOptions = ["🍎", "🍓", "🍌", "🍊", "🥑", "🥬", "🍅", "🥦", "🌽", "🧃", "🍵", "💧", "🥛", "☕", "🥜", "🍫", "🍘", "🧀", "🥚", "🍞", "🥐", "🧁"];
 
   return (
     <div className="max-w-2xl">
@@ -137,27 +135,24 @@ export default function NewProductPage() {
             required
           />
 
-          {/* Emoji picker */}
+          {/* Image URL */}
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Product Image (Emoji)
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              Product Image URL
             </label>
-            <div className="flex flex-wrap gap-2">
-              {emojiOptions.map((emoji) => (
-                <button
-                  key={emoji}
-                  type="button"
-                  onClick={() => setForm((prev) => ({ ...prev, image: emoji }))}
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center text-xl transition-all ${
-                    form.image === emoji
-                      ? "bg-brand/20 border-2 border-brand scale-110"
-                      : "bg-surface-light border border-white/10 hover:border-white/30"
-                  }`}
-                >
-                  {emoji}
-                </button>
-              ))}
-            </div>
+            <input
+              type="url"
+              name="image"
+              value={form.image}
+              onChange={handleChange}
+              placeholder="https://example.com/image.jpg"
+              className="w-full px-4 py-2.5 bg-surface-light border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand/50"
+            />
+            {form.image && (
+              <div className="mt-2 w-20 h-20 rounded-lg overflow-hidden bg-surface-light">
+                <img src={form.image} alt="Preview" className="w-full h-full object-cover" />
+              </div>
+            )}
           </div>
 
           <div className="sm:col-span-2">

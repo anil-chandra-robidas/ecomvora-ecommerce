@@ -54,6 +54,24 @@ export interface Review {
   };
 }
 
+export interface WishlistItem {
+  id: string;
+  product: Product;
+  createdAt: Date | string;
+}
+
+export interface Address {
+  id: string;
+  name: string;
+  phone: string;
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  isDefault: boolean;
+}
+
 export const CATEGORIES = [
   "fruits",
   "vegetables",
@@ -64,3 +82,27 @@ export const CATEGORIES = [
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  category: string;
+  author: string;
+  readTime: string;
+  published: boolean;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export const BLOG_CATEGORIES = [
+  "Nutrition",
+  "Seasonal",
+  "Lifestyle",
+  "Tips",
+  "Education",
+  "Recipes",
+] as const;

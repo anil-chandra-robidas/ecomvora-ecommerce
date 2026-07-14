@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Utensils,
   Mail,
@@ -49,6 +52,10 @@ const socialLinks = [
 const paymentMethods = ["Visa", "Mastercard", "PayPal", "Stripe"];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/admin") || pathname.startsWith("/account")) return null;
+
   return (
     <footer className="mt-[120px] bg-surface border-t border-white/5">
       {/* Trust Bar */}

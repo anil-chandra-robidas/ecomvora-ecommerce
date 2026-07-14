@@ -79,8 +79,12 @@ export default function AdminProductsPage() {
                 <tr key={product.id} className="hover:bg-white/[0.02]">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-surface-light rounded-lg flex items-center justify-center text-lg">
-                        {product.image}
+                      <div className="w-10 h-10 bg-surface-light rounded-lg flex items-center justify-center overflow-hidden">
+                        {product.image.startsWith("http") ? (
+                          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <span className="text-lg">{product.image}</span>
+                        )}
                       </div>
                       <div>
                         <p className="text-white font-medium">{product.name}</p>

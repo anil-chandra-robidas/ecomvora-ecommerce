@@ -6,6 +6,7 @@ import {
   ShoppingCart,
   Package,
   Users,
+  FileText,
   TrendingUp,
   ArrowUpRight,
 } from "lucide-react";
@@ -15,12 +16,23 @@ interface DashboardStats {
   totalOrders: number;
   totalProducts: number;
   totalUsers: number;
+  totalBlogPosts: number;
+  publishedBlogPosts: number;
   recentOrders: {
     id: string;
     total: number;
     status: string;
     createdAt: string;
     user: { name: string };
+  }[];
+  recentBlogPosts: {
+    id: string;
+    title: string;
+    slug: string;
+    category: string;
+    author: string;
+    published: boolean;
+    createdAt: string;
   }[];
 }
 
@@ -65,6 +77,13 @@ export default function AdminDashboard() {
           color: "text-green-400",
         },
         {
+          label: "Blog Posts",
+          value: stats.totalBlogPosts.toString(),
+          icon: FileText,
+          change: `${stats.publishedBlogPosts} published`,
+          color: "text-blue-400",
+        },
+        {
           label: "Users",
           value: stats.totalUsers.toString(),
           icon: Users,
@@ -84,7 +103,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {statCards.map((card) => (
           <div
             key={card.label}
@@ -105,65 +124,128 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      {/* Recent Orders */}
-      <div className="bg-surface rounded-2xl border border-white/5 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-bold text-white">Recent Orders</h2>
-          <a
-            href="/admin/orders"
-            className="text-sm text-brand hover:text-brand-light flex items-center gap-1"
-          >
-            View All <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        {/* Recent Orders */}
+        <div className="bg-surface rounded-2xl border border-white/5 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white">Recent Orders</h2>
+            <a
+              href="/admin/orders"
+              className="text-sm text-brand hover:text-brand-light flex items-center gap-1"
+            >
+              View All <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          {stats?.recentOrders && stats.recentOrders.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-gray-500 border-b border-white/5">
+                    <th className="pb-3 font-medium">Order ID</th>
+                    <th className="pb-3 font-medium">Customer</th>
+                    <th className="pb-3 font-medium">Total</th>
+                    <th className="pb-3 font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {stats.recentOrders.map((order) => (
+                    <tr key={order.id} className="hover:bg-white/[0.02]">
+                      <td className="py-3 text-gray-300 font-mono text-xs">
+                        #{order.id.slice(0, 8)}
+                      </td>
+                      <td className="py-3 text-white">{order.user.name}</td>
+                      <td className="py-3 text-brand font-medium">
+                        ${order.total.toFixed(2)}
+                      </td>
+                      <td className="py-3">
+                        <span
+                          className={`px-2 py-1 rounded-lg text-xs font-medium ${
+                            order.status === "delivered"
+                              ? "bg-green-500/20 text-green-400"
+                              : order.status === "shipped"
+                              ? "bg-blue-500/20 text-blue-400"
+                              : order.status === "processing"
+                              ? "bg-amber-500/20 text-amber-400"
+                              : "bg-white/10 text-gray-400"
+                          }`}
+                        >
+                          {order.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-500">
+              <ShoppingCart className="w-10 h-10 mx-auto mb-3 opacity-50" />
+              <p>No orders yet</p>
+            </div>
+          )}
         </div>
 
-        {stats?.recentOrders && stats.recentOrders.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-gray-500 border-b border-white/5">
-                  <th className="pb-3 font-medium">Order ID</th>
-                  <th className="pb-3 font-medium">Customer</th>
-                  <th className="pb-3 font-medium">Total</th>
-                  <th className="pb-3 font-medium">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                {stats.recentOrders.map((order) => (
-                  <tr key={order.id} className="hover:bg-white/[0.02]">
-                    <td className="py-3 text-gray-300 font-mono text-xs">
-                      #{order.id.slice(0, 8)}
-                    </td>
-                    <td className="py-3 text-white">{order.user.name}</td>
-                    <td className="py-3 text-brand font-medium">
-                      ${order.total.toFixed(2)}
-                    </td>
-                    <td className="py-3">
-                      <span
-                        className={`px-2 py-1 rounded-lg text-xs font-medium ${
-                          order.status === "delivered"
-                            ? "bg-green-500/20 text-green-400"
-                            : order.status === "shipped"
-                            ? "bg-blue-500/20 text-blue-400"
-                            : order.status === "processing"
-                            ? "bg-amber-500/20 text-amber-400"
-                            : "bg-white/10 text-gray-400"
-                        }`}
-                      >
-                        {order.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Recent Blog Posts */}
+        <div className="bg-surface rounded-2xl border border-white/5 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white">Recent Blog Posts</h2>
+            <a
+              href="/admin/blog"
+              className="text-sm text-brand hover:text-brand-light flex items-center gap-1"
+            >
+              View All <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
           </div>
-        ) : (
-          <div className="text-center py-8 text-gray-500">
-            <ShoppingCart className="w-10 h-10 mx-auto mb-3 opacity-50" />
-            <p>No orders yet</p>
-          </div>
-        )}
+
+          {stats?.recentBlogPosts && stats.recentBlogPosts.length > 0 ? (
+            <div className="space-y-4">
+              {stats.recentBlogPosts.map((post) => (
+                <a
+                  key={post.id}
+                  href={`/admin/blog/${post.id}/edit`}
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.03] transition-colors group"
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="text-white font-medium truncate group-hover:text-brand transition-colors">
+                      {post.title}
+                    </p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs text-gray-500">{post.category}</span>
+                      <span className="text-gray-600">·</span>
+                      <span className="text-xs text-gray-500">{post.author}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 ml-4 shrink-0">
+                    <span
+                      className={`px-2 py-0.5 text-xs font-medium rounded-lg ${
+                        post.published
+                          ? "bg-green-500/20 text-green-400"
+                          : "bg-amber-500/20 text-amber-400"
+                      }`}
+                    >
+                      {post.published ? "Published" : "Draft"}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      {new Date(post.createdAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-500">
+              <FileText className="w-10 h-10 mx-auto mb-3 opacity-50" />
+              <p>No blog posts yet</p>
+              <a
+                href="/admin/blog/new"
+                className="text-sm text-brand hover:text-brand-light mt-2 inline-block"
+              >
+                Create your first post
+              </a>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

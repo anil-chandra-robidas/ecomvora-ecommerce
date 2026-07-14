@@ -1,34 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-
-const posts = [
-  {
-    slug: "healthy-eating-on-a-budget",
-    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop",
-    category: "Nutrition",
-    title: "Healthy Eating on a Budget: Smart Tips for Fresh Grocery Shopping",
-    excerpt: "Discover practical strategies to fill your cart with nutritious, fresh produce without breaking the bank.",
-  },
-  {
-    slug: "seasonal-produce-guide",
-    image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&h=400&fit=crop",
-    category: "Seasonal",
-    title: "What's in Season: Your Guide to Fresh Produce This Month",
-    excerpt: "Learn which fruits and vegetables are at their peak flavor and best value right now.",
-  },
-  {
-    slug: "farm-to-table-benefits",
-    image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&h=400&fit=crop",
-    category: "Lifestyle",
-    title: "Farm to Table: Why Local Sourcing Matters for Your Health",
-    excerpt: "Explore the benefits of choosing locally sourced food and how it supports your community.",
-  },
-];
+import { BlogPost } from "@/types";
 
 export default function Blog() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    fetch("/api/admin/blog?published=true")
+      .then((res) => res.json())
+      .then((data) => setPosts(data.slice(0, 3)))
+      .catch(() => {});
+  }, []);
+
+  if (posts.length === 0) return null;
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[60px]">
       {/* Header */}

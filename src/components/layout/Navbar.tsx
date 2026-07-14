@@ -6,7 +6,6 @@ import { useRouter, usePathname } from "next/navigation";
 import {
   Search,
   ShoppingCart,
-  User,
   Menu,
   X,
   Utensils,
@@ -87,6 +86,8 @@ export default function Navbar() {
   const { itemCount } = useCart();
   const pathname = usePathname();
   const router = useRouter();
+
+  if (pathname.startsWith("/admin") || pathname.startsWith("/account")) return null;
 
   return (
     <nav className="sticky top-0 z-50">
@@ -184,17 +185,6 @@ export default function Navbar() {
                     {itemCount}
                   </span>
                 )}
-              </Link>
-
-              <Link
-                href="/login"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all text-sm"
-              >
-                <User className="w-5 h-5" />
-                <div className="text-left hidden lg:block">
-                  <p className="text-[10px] text-gray-500 leading-none">Hello, Sign In</p>
-                  <p className="text-xs font-medium leading-tight">Account</p>
-                </div>
               </Link>
 
               <button
@@ -420,18 +410,7 @@ export default function Navbar() {
               );
             })}
 
-            {/* Divider */}
-            <div className="border-t border-white/10 my-2" />
 
-            {/* Account actions */}
-            <Link
-              href="/login"
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-xl"
-            >
-              <User className="w-5 h-5" />
-              Sign In / Register
-            </Link>
           </div>
         </div>
       )}

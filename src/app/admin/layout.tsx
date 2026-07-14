@@ -6,11 +6,8 @@ import {
   LayoutDashboard,
   Package,
   ShoppingCart,
-  Users,
-  Settings,
   Utensils,
-  LogOut,
-  ChevronLeft,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,13 +15,14 @@ const sidebarLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/admin/blog", label: "Blog", icon: FileText },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="flex min-h-[calc(100vh-64px)]">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
       <aside className="hidden lg:flex flex-col w-64 bg-surface border-r border-white/5 p-4">
         {/* Admin header */}
@@ -59,21 +57,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             );
           })}
         </nav>
-
-        {/* Back to shop */}
-        <div className="border-t border-white/5 pt-4 mt-4 space-y-1">
-          <Link
-            href="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all"
-          >
-            <ChevronLeft className="w-5 h-5" />
-            Back to Shop
-          </Link>
-          <button className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-400 hover:text-red-400 hover:bg-red-500/5 transition-all w-full">
-            <LogOut className="w-5 h-5" />
-            Sign Out
-          </button>
-        </div>
       </aside>
 
       {/* Main content */}
