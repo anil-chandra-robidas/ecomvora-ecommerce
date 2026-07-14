@@ -38,6 +38,7 @@ interface DashboardStats {
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchStats();
@@ -46,11 +47,34 @@ export default function AdminDashboard() {
   async function fetchStats() {
     try {
       const res = await fetch("/api/admin/stats");
+      if (!res.ok) throw new Error("Failed to fetch");
       const data = await res.json();
       setStats(data);
     } catch {
       console.error("Failed to fetch stats");
+    } finally {
+      setLoading(false);
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+          <p className="text-gray-400 text-sm mt-1">Loading dashboard...</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="bg-surface rounded-2xl border border-white/5 p-6 animate-pulse">
+              <div className="h-10 w-10 bg-white/5 rounded-xl mb-4" />
+              <div className="h-8 w-20 bg-white/5 rounded mb-2" />
+              <div className="h-4 w-16 bg-white/5 rounded" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   const statCards = stats

@@ -80,7 +80,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           {/* Main Content */}
           <article>
             {/* Hero Image */}
-            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-[2/1]">
+            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-[2/1] bg-surface-light">
               <Image
                 src={post.image}
                 alt={post.title}
@@ -88,7 +88,14 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                 sizes="(max-width: 1024px) 100vw, 66vw"
                 className="object-cover"
                 priority
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                  const fallback = target.parentElement?.nextElementSibling as HTMLElement;
+                  if (fallback) fallback.style.display = "flex";
+                }}
               />
+              <div className="hidden absolute inset-0 items-center justify-center bg-surface-light text-6xl">📝</div>
             </div>
 
             {/* Meta */}
@@ -194,14 +201,21 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                       href={`/blog/${p.slug}`}
                       className="flex gap-3 group"
                     >
-                      <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0">
+                      <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-light">
                         <Image
                           src={p.image}
                           alt={p.title}
                           fill
                           sizes="80px"
                           className="object-cover group-hover:scale-110 transition-transform duration-300"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                            const fallback = target.parentElement?.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = "flex";
+                          }}
                         />
+                        <div className="hidden absolute inset-0 items-center justify-center bg-surface-light text-2xl">📝</div>
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="text-sm font-medium text-white line-clamp-2 group-hover:text-brand transition-colors">
@@ -215,11 +229,35 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               </div>
             )}
 
+            {/* Popular Posts */}
+            <div className="bg-surface border border-white/10 rounded-2xl p-6">
+              <h3 className="text-white font-semibold mb-4">Popular Posts</h3>
+              <div className="space-y-4">
+                {allPosts.filter((p) => p.slug !== post.slug).slice(0, 5).map((p, i) => (
+                  <Link
+                    key={p.slug}
+                    href={`/blog/${p.slug}`}
+                    className="flex gap-3 group"
+                  >
+                    <span className="text-2xl font-bold text-white/10 w-8 shrink-0 text-center leading-none pt-1">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-medium text-white line-clamp-2 group-hover:text-brand transition-colors">
+                        {p.title}
+                      </h4>
+                      <p className="text-xs text-gray-500 mt-1">{formatDate(p.createdAt)}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {/* Popular Tags */}
             <div className="bg-surface border border-white/10 rounded-2xl p-6">
               <h3 className="text-white font-semibold mb-4">Popular Tags</h3>
               <div className="flex flex-wrap gap-2">
-                {["Nutrition", "Recipes", "Tips", "Organic", "Fresh", "Seasonal", "Healthy"].map((tag) => (
+                {["Style", "Trends", "Tips", "Denim", "Accessories", "Seasonal", "Sustainable"].map((tag) => (
                   <span
                     key={tag}
                     className="px-3 py-1.5 bg-dark border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:border-white/20 cursor-pointer transition-all"
@@ -259,14 +297,21 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                   href={`/blog/${p.slug}`}
                   className="group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
                 >
-                  <div className="relative h-52 overflow-hidden">
+                  <div className="relative h-52 overflow-hidden bg-surface-light">
                     <Image
                       src={p.image}
                       alt={p.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const fallback = target.parentElement?.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = "flex";
+                      }}
                     />
+                    <div className="hidden absolute inset-0 items-center justify-center bg-surface-light text-4xl">📝</div>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">

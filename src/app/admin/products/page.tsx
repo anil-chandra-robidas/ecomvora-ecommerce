@@ -81,10 +81,21 @@ export default function AdminProductsPage() {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-surface-light rounded-lg flex items-center justify-center overflow-hidden">
                         {product.image.startsWith("http") ? (
-                          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-                        ) : (
-                          <span className="text-lg">{product.image}</span>
-                        )}
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = "none";
+                              const fallback = target.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.style.display = "flex";
+                            }}
+                          />
+                        ) : null}
+                        <div className={`${product.image.startsWith("http") ? "hidden" : "flex"} items-center justify-center w-full h-full text-lg`}>
+                          {product.category === "tops" ? "👕" : product.category === "bottoms" ? "👖" : product.category === "dresses" ? "👗" : product.category === "outerwear" ? "🧥" : product.category === "accessories" ? "⌚" : "👟"}
+                        </div>
                       </div>
                       <div>
                         <p className="text-white font-medium">{product.name}</p>

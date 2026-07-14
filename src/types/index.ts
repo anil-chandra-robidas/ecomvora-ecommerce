@@ -25,10 +25,11 @@ export interface Order {
   userId: string;
   items: OrderItem[];
   total: number;
-  status: "pending" | "processing" | "shipped" | "delivered";
+  status: "pending" | "paid" | "processing" | "shipped" | "delivered";
   shippingName: string;
   shippingEmail: string;
   shippingAddr: string;
+  paymentIntentId?: string;
   createdAt: Date;
 }
 
@@ -73,12 +74,12 @@ export interface Address {
 }
 
 export const CATEGORIES = [
-  "fruits",
-  "vegetables",
-  "beverages",
-  "snacks",
-  "dairy",
-  "bakery",
+  "tops",
+  "bottoms",
+  "dresses",
+  "outerwear",
+  "accessories",
+  "footwear",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];

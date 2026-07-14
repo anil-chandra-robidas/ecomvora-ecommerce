@@ -47,16 +47,23 @@ export default function Blog() {
             className="group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
           >
             {/* Image Container */}
-            <div className="relative h-52 overflow-hidden">
+            <div className="relative h-52 overflow-hidden bg-surface-light">
               <Image
                 src={post.image}
                 alt={post.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                  const fallback = target.parentElement?.nextElementSibling as HTMLElement;
+                  if (fallback) fallback.style.display = "flex";
+                }}
               />
+              <div className="hidden absolute inset-0 items-center justify-center bg-surface-light text-4xl">📝</div>
               {/* Category Badge */}
-              <span className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">
+              <span className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg z-10">
                 {post.category}
               </span>
             </div>

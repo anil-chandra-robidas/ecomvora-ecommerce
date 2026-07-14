@@ -54,14 +54,21 @@ export default function BlogPage() {
                 className="group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
               >
                 {/* Image */}
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-52 overflow-hidden bg-surface-light">
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      const fallback = target.parentElement?.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = "flex";
+                    }}
                   />
+                  <div className="hidden absolute inset-0 items-center justify-center bg-surface-light text-4xl">📝</div>
                 </div>
 
                 {/* Content */}

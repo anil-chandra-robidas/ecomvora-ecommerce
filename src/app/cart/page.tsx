@@ -42,8 +42,21 @@ export default function CartPage() {
               className="flex gap-4 bg-surface rounded-2xl border border-white/5 p-4 sm:p-6"
             >
               {/* Image */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-surface-light rounded-xl flex items-center justify-center text-4xl shrink-0">
-                {item.product.image}
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-surface-light rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
+                <img
+                  src={item.product.image}
+                  alt={item.product.name}
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = "flex";
+                  }}
+                />
+                <div className="hidden items-center justify-center w-full h-full text-4xl">
+                  {item.product.category === "tops" ? "👕" : item.product.category === "bottoms" ? "👖" : item.product.category === "dresses" ? "👗" : item.product.category === "outerwear" ? "🧥" : item.product.category === "accessories" ? "⌚" : "👟"}
+                </div>
               </div>
 
               {/* Info */}

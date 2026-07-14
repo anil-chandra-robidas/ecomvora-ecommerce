@@ -192,7 +192,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-[60px] bg-surface/50">
+      <section className="py-[60px]">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-white text-center mb-12">Why Choose Us</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

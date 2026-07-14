@@ -22,19 +22,19 @@ export function truncate(text: string, length: number): string {
 }
 
 export const categoryColors: Record<string, string> = {
-  fruits: "from-green-500/20 to-green-600/5 border-green-500/30",
-  vegetables: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/30",
-  beverages: "from-blue-500/20 to-blue-600/5 border-blue-500/30",
-  snacks: "from-amber-500/20 to-amber-600/5 border-amber-500/30",
-  dairy: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/30",
-  bakery: "from-orange-500/20 to-orange-600/5 border-orange-500/30",
+  tops: "from-pink-500/20 to-pink-600/5 border-pink-500/30",
+  bottoms: "from-blue-500/20 to-blue-600/5 border-blue-500/30",
+  dresses: "from-purple-500/20 to-purple-600/5 border-purple-500/30",
+  outerwear: "from-amber-500/20 to-amber-600/5 border-amber-500/30",
+  accessories: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/30",
+  footwear: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/30",
 };
 
 export const categoryEmojis: Record<string, string> = {
-  fruits: "🍎",
-  vegetables: "🥬",
-  beverages: "🥤",
-  snacks: "🍿",
-  dairy: "🧀",
-  bakery: "🍞",
+  tops: "👕",
+  bottoms: "👖",
+  dresses: "👗",
+  outerwear: "🧥",
+  accessories: "⌚",
+  footwear: "👟",
 };

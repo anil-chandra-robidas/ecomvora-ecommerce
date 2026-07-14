@@ -176,8 +176,19 @@ export default function EditProductPage() {
               className="w-full px-4 py-2.5 bg-surface-light border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand/50"
             />
             {form.image && (
-              <div className="mt-2 w-20 h-20 rounded-lg overflow-hidden bg-surface-light">
-                <img src={form.image} alt="Preview" className="w-full h-full object-cover" />
+              <div className="mt-2 w-20 h-20 rounded-lg overflow-hidden bg-surface-light flex items-center justify-center">
+                <img
+                  src={form.image}
+                  alt="Preview"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = "flex";
+                  }}
+                />
+                <div className="hidden items-center justify-center w-full h-full text-2xl">🖼️</div>
               </div>
             )}
           </div>

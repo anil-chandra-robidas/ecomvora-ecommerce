@@ -17,9 +17,6 @@ export default function CheckoutPage() {
     address: "",
     city: "",
     zip: "",
-    cardNumber: "",
-    expiry: "",
-    cvc: "",
   });
 
   const tax = total * 0.08;
@@ -33,33 +30,30 @@ export default function CheckoutPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate payment processing
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // Create order via API
     try {
-      const res = await fetch("/api/orders", {
+      const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items.map((item) => ({
             productId: item.product.id,
             quantity: item.quantity,
-            price: item.product.price,
           })),
           shippingName: form.name,
           shippingEmail: form.email,
           shippingAddr: `${form.address}, ${form.city} ${form.zip}`,
-          total: grandTotal,
         }),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (res.ok && data.url) {
         clearCart();
-        router.push("/checkout/success");
+        window.location.href = data.url;
+        return;
       }
     } catch {
-      console.error("Order failed");
+      console.error("Checkout failed");
     } finally {
       setLoading(false);
     }
@@ -82,9 +76,8 @@ export default function CheckoutPage() {
       </h1>
 
       <form onSubmit={handleSubmit} className="grid lg:grid-cols-[1fr_400px] gap-8">
-        {/* Shipping + Payment */}
+        {/* Shipping */}
         <div className="space-y-8">
-          {/* Shipping */}
           <div className="bg-surface rounded-2xl border border-white/5 p-6">
             <h2 className="text-lg font-bold text-white mb-6">Shipping Information</h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -133,39 +126,6 @@ export default function CheckoutPage() {
               />
             </div>
           </div>
-
-          {/* Payment */}
-          <div className="bg-surface rounded-2xl border border-white/5 p-6">
-            <h2 className="text-lg font-bold text-white mb-6">Payment Details</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="sm:col-span-2">
-                <Input
-                  label="Card Number"
-                  name="cardNumber"
-                  value={form.cardNumber}
-                  onChange={handleChange}
-                  placeholder="4242 4242 4242 4242"
-                  required
-                />
-              </div>
-              <Input
-                label="Expiry Date"
-                name="expiry"
-                value={form.expiry}
-                onChange={handleChange}
-                placeholder="12/28"
-                required
-              />
-              <Input
-                label="CVC"
-                name="cvc"
-                value={form.cvc}
-                onChange={handleChange}
-                placeholder="123"
-                required
-              />
-            </div>
-          </div>
         </div>
 
         {/* Order Summary */}
@@ -175,8 +135,21 @@ export default function CheckoutPage() {
           <div className="space-y-3 mb-6">
             {items.map((item) => (
               <div key={item.id} className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-surface-light rounded-lg flex items-center justify-center text-lg shrink-0">
-                  {item.product.image}
+                <div className="w-10 h-10 bg-surface-light rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
+                  <img
+                    src={item.product.image}
+                    alt={item.product.name}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      const fallback = target.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = "flex";
+                    }}
+                  />
+                  <div className="hidden items-center justify-center w-full h-full text-lg">
+                    {item.product.category === "tops" ? "👕" : item.product.category === "bottoms" ? "👖" : item.product.category === "dresses" ? "👗" : item.product.category === "outerwear" ? "🧥" : item.product.category === "accessories" ? "⌚" : "👟"}
+                  </div>
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-white truncate">{item.product.name}</p>
