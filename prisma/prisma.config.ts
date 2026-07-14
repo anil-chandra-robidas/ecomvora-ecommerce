@@ -5,7 +5,7 @@ export default {
   schema: path.join(__dirname, "schema.prisma"),
   migrate: {
     async url() {
-      return "file:./dev.db";
+      return process.env.DATABASE_URL!;
     },
   },
 };
